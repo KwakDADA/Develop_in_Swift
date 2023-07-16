@@ -11,6 +11,77 @@
  On this page, you can use the `displaySize` variable to choose between four display resolutions. Its value defaults to .fortyByForty. Be sure to set `displaySize` *first*, before any of your code.
  */
 displaySize = .fortyByForty
+
+func headWithCap(x: Int, y: Int, faceColor: Color, capColor: Color) {
+    let pixels = [
+        Pixel(x: x, y: y, color: faceColor), Pixel(x: x+1, y: y, color: faceColor), Pixel(x: x+2, y: y, color: faceColor),
+        Pixel(x: x, y: y+1, color: capColor), Pixel(x: x+1, y: y+1, color: capColor), Pixel(x: x+2, y: y+1, color: capColor), Pixel(x: x+3, y: y+1, color: capColor),
+        Pixel(x: x, y: y+2, color: capColor), Pixel(x: x+1, y: y+2, color: capColor), Pixel(x: x+2, y: y+2, color: capColor)
+    ]
+    display.batchSetPixels(pixels)
+}
+
+func torso(x: Int, y: Int, skinColor: Color, shirtColor: Color) {
+    let pixels = [
+        Pixel(x: x+1, y: y+3, color: skinColor), // neck
+        Pixel(x: x, y: y+2, color: shirtColor), Pixel(x: x+1, y: y+2, color: shirtColor), Pixel(x: x+2, y: y+2, color: shirtColor),
+        Pixel(x: x, y: y+1, color: shirtColor), Pixel(x: x+1, y: y+1, color: skinColor), Pixel(x: x+2, y: y+1, color: shirtColor),
+        Pixel(x: x, y: y, color: shirtColor), Pixel(x: x+1, y: y, color: skinColor), Pixel(x: x+2, y: y, color: skinColor)
+    ]
+    display.batchSetPixels(pixels)
+}
+
+func legs(x: Int, y: Int, pantsColor: Color, shoeColor: Color, running: Bool) {
+    var pixels = [Pixel]()
+    if running {
+        pixels = [
+            Pixel(x: x+1, y: y+3, color: pantsColor), Pixel(x: x+2, y: y+3, color: pantsColor), Pixel(x: x+3, y: y+3, color: pantsColor), Pixel(x: x+4, y: y+3, color: shoeColor),
+            Pixel(x: x, y: y+2, color: shoeColor), Pixel(x: x+1, y: y+2, color: pantsColor), Pixel(x: x+2, y: y+2, color: pantsColor), Pixel(x: x+3, y: y+2, color: pantsColor), Pixel(x: x+4, y: y+2, color: shoeColor),
+            Pixel(x: x, y: y+1, color: shoeColor)
+        ]
+    } else {
+        pixels = [
+            Pixel(x: x+1, y: y+3, color: pantsColor), Pixel(x: x+2, y: y+3, color: pantsColor), Pixel(x: x+3, y: y+3, color: pantsColor),
+            Pixel(x: x+2, y: y+2, color: pantsColor),
+            Pixel(x: x+2, y: y+1, color: pantsColor),
+            Pixel(x: x+2, y: y, color: shoeColor), Pixel(x: x+3, y: y, color: shoeColor)
+        ]
+    }
+    display.batchSetPixels(pixels)
+}
+
+struct Person {
+    var x: Int
+    var y: Int
+    var skinColor: Color
+    var capColor: Color
+    var shirtColor: Color
+    var pantsColor: Color
+    var shoeColor: Color
+    var running: Bool
+    
+    func draw() {
+        headWithCap(x: x+1, y: y+8, faceColor: skinColor, capColor: capColor)
+        torso(x: x+1, y: y+4, skinColor: skinColor, shirtColor: shirtColor)
+        legs(x: x, y: y, pantsColor: pantsColor, shoeColor: shoeColor, running: running)
+    }
+    func clear() {
+        headWithCap(x: x+1, y: y+8, faceColor: .black, capColor: .black)
+        torso(x: x+1, y: y+4, skinColor: .black, shirtColor: .black)
+        legs(x: x, y: y, pantsColor: .black, shoeColor: .black, running: running)
+    }
+}
+
+var guy = Person(x: 4, y: 4, skinColor: .orange, capColor: .green, shirtColor: .red, pantsColor: .blue, shoeColor: .gray, running: false)
+
+for _ in 1...28 {
+    guy.clear()
+    guy.running.toggle()
+    guy.x += 1
+    guy.draw()
+    display.wait(time: 0.05)
+}
+
 /*:
  _Copyright © 2021 Apple Inc._
 

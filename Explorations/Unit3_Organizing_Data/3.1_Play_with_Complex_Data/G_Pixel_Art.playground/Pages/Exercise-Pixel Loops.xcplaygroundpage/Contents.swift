@@ -25,7 +25,12 @@ var pixels = [
  - callout(Exercise): Using the array of pixels above, write an animation loop that draws them one at a time, ending up with the entire drawing. (Hint: you don't have to clear the screen between iterations.)
 
  */
-
+for i in 0..<pixels.count {
+    if i % 3 == 0 {
+        display.setPixel(pixels[i])
+    }
+    display.wait(time: 0.05)
+}
 
 /*:
  - callout(Challenge): Try modifying the array to draw different things. To create different styles, experiment with the loop by clearing the display between iterations—or after every `n` iterations, using the `%` modulo operator.
