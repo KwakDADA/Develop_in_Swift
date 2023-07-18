@@ -32,6 +32,11 @@ func dropBall() {
     ball.position = funnel.position
 }
 
+func ballCollided(with otherShape: Shape) {
+    if otherShape.name != "target" { return }
+    otherShape.fillColor = .green
+}
+
 /*
 The setup() function is called once when the app launches. Without it, your app won't compile.
 Use it to set up and start your app.
@@ -49,7 +54,7 @@ fileprivate func setupBall() {
     ball.position = Point(x: 250, y: 400)
     
     ball.hasPhysics = true
-    ball.onCollision
+    ball.onCollision = ballCollided(with:)
     
     scene.add(ball)
 }
@@ -59,8 +64,10 @@ fileprivate func setupBarrier() {
     barrier.lineColor = .black
     barrier.lineThickness = 2
     barrier.position = Point(x: 200, y: 150)
+    
     barrier.hasPhysics = true
     barrier.isImmobile = true
+    
     scene.add(barrier)
 }
 
@@ -69,20 +76,26 @@ fileprivate func setupFunnel() {
     funnel.lineColor = .black
     funnel.lineThickness = 2
     funnel.position = Point(x: 200, y: scene.height - 24)
+    
     funnel.onTapped = dropBall
+    
     scene.add(funnel)
 }
 
 func setupTarget() {
+    target.name = "target"
     target.fillColor = .magenta
     target.lineColor = .black
     target.lineThickness = 2
     target.position = Point(x: 200, y: 400)
+    
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
+    
     scene.add(target)
 }
+
 
 func setup() {
     setupBall()
