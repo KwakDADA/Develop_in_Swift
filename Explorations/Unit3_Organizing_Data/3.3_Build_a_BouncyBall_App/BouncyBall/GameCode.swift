@@ -2,15 +2,7 @@ import Foundation
 
 let ball = OvalShape(width: 40, height: 40)
 
-let barrierWidth = 100.0
-let barrierHeight = 25.0
-let barrierPoints = [
-    Point(x: 0, y: 0),
-    Point(x: 0, y: barrierHeight),
-    Point(x: barrierWidth, y: barrierHeight),
-    Point(x: barrierWidth, y: 0)
-]
-let barrier = PolygonShape(points: barrierPoints)
+var barriers: [Shape] = []
 
 let funnelPoints = [
     Point(x: 0, y: 50),
@@ -20,20 +12,19 @@ let funnelPoints = [
 ]
 let funnel = PolygonShape(points: funnelPoints)
 
-let targetPoints = [
-    Point(x: 10, y: 0),
-    Point(x: 0, y: 10),
-    Point(x: 10, y: 20),
-    Point(x: 20, y: 10)
-]
-let target = PolygonShape(points: targetPoints)
+var targets: [Shape] = []
 
 func dropBall() {
     ball.position = funnel.position
-    
     ball.stopAllMotion()
     
-    barrier.isDraggable = false
+    for target in targets {
+        target.fillColor = .magenta
+    }
+    
+    for barrier in barriers {
+        barrier.isDraggable = false
+    }
 }
 
 func ballCollided(with otherShape: Shape) {
@@ -42,7 +33,23 @@ func ballCollided(with otherShape: Shape) {
 }
 
 func ballExitedScene() {
-    barrier.isDraggable = true
+    var hitTargets = 0
+    for target in targets {
+        if target.fillColor == .green {
+            hitTargets += 1
+        }
+    }
+    if hitTargets == targets.count {
+        scene.presentAlert(text: "I love you 🥰", completion: alertDismissed)
+    }
+    
+    for barrier in barriers {
+        barrier.isDraggable = true
+    }
+}
+
+func alertDismissed() {
+    
 }
 
 func resetGame() {
@@ -79,20 +86,30 @@ fileprivate func setupBall() {
     ball.onExitedScene = ballExitedScene
     
     scene.add(ball)
-    scene.trackShape(ball) // onExitedScene을 사용하기 위한 line
+    scene.trackShape(ball)
 }
 
-fileprivate func setupBarrier() {
+fileprivate func addBarrier(at position: Point, width: Double, height: Double, angle: Double) {
+    let barrierPoints = [
+        Point(x: 0, y: 0),
+        Point(x: 0, y: height),
+        Point(x: width, y: height),
+        Point(x: width, y: 0)
+    ]
+    let barrier = PolygonShape(points: barrierPoints)
+    
+    barrier.position = position
+    barrier.angle = angle
+    
     barrier.fillColor = .brown
     barrier.lineColor = .black
     barrier.lineThickness = 2
-    barrier.position = Point(x: 200, y: 200)
-    barrier.angle = 0.2
-    
-    scene.add(barrier)
     
     barrier.hasPhysics = true
     barrier.isImmobile = true
+    
+    barriers.append(barrier)
+    scene.add(barrier)
 }
 
 fileprivate func setupFunnel() {
@@ -107,29 +124,43 @@ fileprivate func setupFunnel() {
     funnel.onTapped = dropBall
 }
 
-func setupTarget() {
+func addTarget(at position: Point) {
+    let targetPoints = [
+        Point(x: 10, y: 0),
+        Point(x: 0, y: 10),
+        Point(x: 10, y: 20),
+        Point(x: 20, y: 10)
+    ]
+    let target = PolygonShape(points: targetPoints)
+    target.position = position
     target.name = "target"
     target.fillColor = .magenta
     target.lineColor = .black
     target.lineThickness = 2
-    target.position = Point(x: 82, y: 402)
-    
-    scene.add(target)
     
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
     target.isDraggable = false
+    
+    targets.append(target)
+    scene.add(target)
 }
 
 func setup() {
     setupBall()
     
-    setupBarrier()
+    addBarrier(at: Point(x: 175, y: 100), width: 80, height: 25, angle: 0.1)
+    addBarrier(at: Point(x: 100, y: 150), width: 30, height: 15, angle: -0.2)
+    addBarrier(at: Point(x: 325, y: 150), width: 100, height: 25, angle: 0.03)
     
     setupFunnel()
     
-    setupTarget()
+    addTarget(at: Point(x: 184, y: 563))
+    addTarget(at: Point(x: 238, y: 624))
+    addTarget(at: Point(x: 269, y: 453))
+    addTarget(at: Point(x: 213, y: 348))
+    addTarget(at: Point(x: 113, y: 267))
     
     resetGame()
     
