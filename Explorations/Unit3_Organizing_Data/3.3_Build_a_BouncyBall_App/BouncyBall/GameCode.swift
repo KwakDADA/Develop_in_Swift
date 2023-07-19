@@ -2,7 +2,7 @@ import Foundation
 
 let ball = OvalShape(width: 40, height: 40)
 
-let barrierWidth = 300.0
+let barrierWidth = 100.0
 let barrierHeight = 25.0
 let barrierPoints = [
     Point(x: 0, y: 0),
@@ -30,11 +30,27 @@ let target = PolygonShape(points: targetPoints)
 
 func dropBall() {
     ball.position = funnel.position
+    
+    ball.stopAllMotion()
+    
+    barrier.isDraggable = false
 }
 
 func ballCollided(with otherShape: Shape) {
     if otherShape.name != "target" { return }
     otherShape.fillColor = .green
+}
+
+func ballExitedScene() {
+    barrier.isDraggable = true
+}
+
+func resetGame() {
+    ball.position = Point(x: 0, y: -80)
+}
+
+func printPosition(of shape: Shape) {
+    print(shape.position)
 }
 
 /*
@@ -54,21 +70,29 @@ fileprivate func setupBall() {
     ball.position = Point(x: 250, y: 400)
     
     ball.hasPhysics = true
+    ball.bounciness = 0.6
+    
+    ball.isDraggable = false
+    
     ball.onCollision = ballCollided(with:)
+    ball.onTapped = resetGame
+    ball.onExitedScene = ballExitedScene
     
     scene.add(ball)
+    scene.trackShape(ball) // onExitedScene을 사용하기 위한 line
 }
 
 fileprivate func setupBarrier() {
     barrier.fillColor = .brown
     barrier.lineColor = .black
     barrier.lineThickness = 2
-    barrier.position = Point(x: 200, y: 150)
+    barrier.position = Point(x: 200, y: 200)
+    barrier.angle = 0.2
+    
+    scene.add(barrier)
     
     barrier.hasPhysics = true
     barrier.isImmobile = true
-    
-    scene.add(barrier)
 }
 
 fileprivate func setupFunnel() {
@@ -76,10 +100,11 @@ fileprivate func setupFunnel() {
     funnel.lineColor = .black
     funnel.lineThickness = 2
     funnel.position = Point(x: 200, y: scene.height - 24)
-    
-    funnel.onTapped = dropBall
-    
+
     scene.add(funnel)
+    
+    funnel.isDraggable = false
+    funnel.onTapped = dropBall
 }
 
 func setupTarget() {
@@ -87,15 +112,15 @@ func setupTarget() {
     target.fillColor = .magenta
     target.lineColor = .black
     target.lineThickness = 2
-    target.position = Point(x: 200, y: 400)
+    target.position = Point(x: 82, y: 402)
+    
+    scene.add(target)
     
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
-    
-    scene.add(target)
+    target.isDraggable = false
 }
-
 
 func setup() {
     setupBall()
@@ -105,4 +130,8 @@ func setup() {
     setupFunnel()
     
     setupTarget()
+    
+    resetGame()
+    
+    scene.onShapeMoved = printPosition(of:)
 }
