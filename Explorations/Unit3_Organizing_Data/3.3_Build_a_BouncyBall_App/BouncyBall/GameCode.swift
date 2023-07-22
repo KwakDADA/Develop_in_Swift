@@ -49,7 +49,6 @@ func ballExitedScene() {
 }
 
 func alertDismissed() {
-    
 }
 
 func resetGame() {
