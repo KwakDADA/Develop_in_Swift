@@ -25,21 +25,21 @@
                                 <rect key="frame" x="164" y="366" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="M0O-kd-XEJ"/>
+                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GqU-FM-qtT"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n5t-Ox-LXO" userLabel="Green Switch">
                                 <rect key="frame" x="164" y="420" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="MRc-Lw-zqR"/>
+                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tet-4u-lJ0"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="90c-MW-NuJ" userLabel="Blue Switch">
                                 <rect key="frame" x="164" y="476" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="BDa-m1-d8l"/>
+                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="6KL-7j-xPR"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -50,7 +50,7 @@
                         <outlet property="blueSwitch" destination="90c-MW-NuJ" id="hAD-fc-VLJ"/>
                         <outlet property="colorView" destination="qRz-LZ-Dff" id="qow-5O-vGq"/>
                         <outlet property="greenSwitch" destination="n5t-Ox-LXO" id="rgB-QA-Ycg"/>
-                        <outlet property="redSwitch" destination="qyV-KP-4Qj" id="Eb4-3P-Vkx"/>
+                        <outlet property="redSwitch" destination="qyV-KP-4Qj" id="Ww7-QY-hlO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

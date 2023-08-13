@@ -20,16 +20,22 @@ class ViewController: UIViewController {
         colorView.backgroundColor = .black
     }
     
-    
     @IBAction func switchChanged(_ sender: UISwitch) {
+        updateColor()
+    }
+    
+    func updateColor() {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
+        
         if redSwitch.isOn {
             red = 1
-        } else if greenSwitch.isOn {
+        }
+        if greenSwitch.isOn {
             green = 1
-        } else if blueSwitch.isOn {
+        }
+        if blueSwitch.isOn {
             blue = 1
         }
         
