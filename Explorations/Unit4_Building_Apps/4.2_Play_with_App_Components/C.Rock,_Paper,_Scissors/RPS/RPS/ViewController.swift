@@ -8,21 +8,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var app_sign: UILabel!
     @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var sign_rock: UIButton!
-    @IBOutlet weak var sign_paper: UIButton!
-    @IBOutlet weak var sign_scissors: UIButton!
+    
+    @IBOutlet weak var rock: UIButton!
+    @IBOutlet weak var paper: UIButton!
+    @IBOutlet weak var scissors: UIButton!
+    
     @IBOutlet weak var again: UIButton!
     
-    @IBAction func rock(_ sender: UIButton) {
-    }
-    
-    @IBAction func paper(_ sender: UIButton) {
-    }
-    
-    @IBAction func scissors(_ sender: UIButton) {
+    @IBAction func signTouchInside(_ sender: UIButton) {
+        updateStatus()
     }
     
     @IBAction func playAgain(_ sender: UIButton) {
@@ -31,8 +28,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
-
+    
+    func updateStatus() {
+        var app: Sign = randomSign()
+        app_sign.text = app.emoji
+        
+        var player: Sign
+        
+        if rock.isTouchInside {
+            player = .rock
+            status.text = player.defeat(opponent: app).message()
+        } else if paper.isTouchInside {
+            player = .paper
+            status.text = player.defeat(opponent: app).message()
+        } else if scissors.isTouchInside {
+            player = .scissors
+            status.text = player.defeat(opponent: app).message()
+        }
+        
+    }
 
 }
 

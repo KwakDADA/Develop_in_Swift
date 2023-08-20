@@ -24,7 +24,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="👊"/>
                                 <connections>
-                                    <action selector="rock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zI4-4s-grw"/>
+                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RZ2-Xf-Dmd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-sT-76u">
@@ -35,7 +35,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="✋"/>
                                 <connections>
-                                    <action selector="paper:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdX-80-AVw"/>
+                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Urd-bc-dxc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKe-v3-9W0">
@@ -46,7 +46,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="✌️"/>
                                 <connections>
-                                    <action selector="scissors:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dEk-xm-LNu"/>
+                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LtR-MB-YA8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJe-Gr-uAn">
@@ -56,7 +56,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Play Again"/>
                                 <connections>
-                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwe-Pg-EZP"/>
+                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FoA-vo-HkE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlp-T8-ngR">
@@ -78,12 +78,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="again" destination="WJe-Gr-uAn" id="vbv-VR-qMh"/>
+                        <outlet property="again" destination="WJe-Gr-uAn" id="XjJ-dW-96a"/>
                         <outlet property="app_sign" destination="gJI-H9-xwK" id="9CD-Cr-MUu"/>
-                        <outlet property="playAgain" destination="WJe-Gr-uAn" id="S6T-Rc-gZl"/>
-                        <outlet property="sign_paper" destination="dl7-sT-76u" id="ubT-eS-Gsl"/>
-                        <outlet property="sign_rock" destination="woI-1v-QzG" id="Scn-OJ-0Jk"/>
-                        <outlet property="sign_scissors" destination="DKe-v3-9W0" id="b5i-E8-lk5"/>
+                        <outlet property="paper" destination="dl7-sT-76u" id="txt-ub-RCD"/>
+                        <outlet property="rock" destination="woI-1v-QzG" id="ENF-gw-O7m"/>
+                        <outlet property="scissors" destination="DKe-v3-9W0" id="iYK-bq-Rxo"/>
                         <outlet property="status" destination="Dlp-T8-ngR" id="kWK-4B-XmL"/>
                     </connections>
                 </viewController>
