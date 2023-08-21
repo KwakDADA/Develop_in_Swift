@@ -13,8 +13,8 @@ enum GameState {
     func message() -> String {
         switch self {
         case .start: return "Rock, Paper, Scissors?"
-        case .win: return "You Win!"
-        case .lose: return "You Lose."
+        case .win: return "You Won!"
+        case .lose: return "You Lost."
         case .draw: return "Draw"
         }
     }

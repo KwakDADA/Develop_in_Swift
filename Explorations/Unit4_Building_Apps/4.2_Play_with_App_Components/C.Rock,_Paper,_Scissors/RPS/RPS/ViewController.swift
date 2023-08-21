@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var game: GameState = .start
+    
     @IBOutlet weak var app_sign: UILabel!
     @IBOutlet weak var status: UILabel!
     
@@ -28,26 +30,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        view.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 1, alpha: 1)
+        status.text = "Rock, Paper, Scissors?"
+        app_sign.text = "🤖"
+        again.isHidden = true
     }
     
     func updateStatus() {
-        var app: Sign = randomSign()
+        let app: Sign = randomSign()
         app_sign.text = app.emoji
         
-        var player: Sign
-        
         if rock.isTouchInside {
-            player = .rock
+            let player: Sign = .rock
             status.text = player.defeat(opponent: app).message()
         } else if paper.isTouchInside {
-            player = .paper
+            let player: Sign = .paper
             status.text = player.defeat(opponent: app).message()
         } else if scissors.isTouchInside {
-            player = .scissors
+            let player: Sign = .scissors
             status.text = player.defeat(opponent: app).message()
         }
-        
     }
 
 }
