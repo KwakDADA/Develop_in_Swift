@@ -24,7 +24,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="👊"/>
                                 <connections>
-                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RZ2-Xf-Dmd"/>
+                                    <action selector="rockTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="87s-N9-XuW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-sT-76u">
@@ -33,9 +33,9 @@
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.90000000000000002" height="1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="✋"/>
+                                <state key="normal" title="🤚"/>
                                 <connections>
-                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Urd-bc-dxc"/>
+                                    <action selector="paperTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7NT-Ud-5nq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKe-v3-9W0">
@@ -46,7 +46,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="✌️"/>
                                 <connections>
-                                    <action selector="signTouchInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LtR-MB-YA8"/>
+                                    <action selector="scissorsTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fmn-La-h0t"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJe-Gr-uAn">

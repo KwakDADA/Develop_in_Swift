@@ -18,7 +18,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var again: UIButton!
     
-    @IBAction func signTouchInside(_ sender: UIButton) {
+    @IBAction func rockTouchUpInside(_ sender: UIButton) {
+        play(.rock)
+    }
+    
+    @IBAction func paperTouchUpInside(_ sender: UIButton) {
+        play(.paper)
+    }
+    
+    @IBAction func scissorsTouchUpInside(_ sender: UIButton) {
+        play(.scissors)
     }
     
     @IBAction func playAgain(_ sender: UIButton) {
@@ -54,8 +63,22 @@ class ViewController: UIViewController {
         case .draw:
             view.backgroundColor = UIColor(red: 1, green: 0.75, blue: 0.5, alpha: 1)
         }
-        
     }
-
+    
+    func play(_ sign: Sign) {
+        let app = randomSign()
+        updateUI(sign.defeat(opponent: app))
+        app_sign.text = app.emoji
+        
+        rock.isEnabled = false
+        paper.isEnabled = false
+        scissors.isEnabled = false
+        
+        rock.isHidden = sign.emoji != rock.titleLabel?.text
+        paper.isHidden = sign.emoji != paper.titleLabel?.text
+        scissors.isHidden = sign.emoji != scissors.titleLabel?.text
+        
+        again.isHidden = false
+    }
 }
 
