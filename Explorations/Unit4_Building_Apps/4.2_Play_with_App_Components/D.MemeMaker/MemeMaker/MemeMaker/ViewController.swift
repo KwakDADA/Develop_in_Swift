@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var topCaptionLabel: UILabel!
     @IBOutlet weak var bottomCaptionLabel: UISegmentedControl!
     
+    var topChoices: [CaptionOption]
+    var bottomChoices: [CaptionOption]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,6 +25,5 @@ class ViewController: UIViewController {
     @IBAction func valueChanged(_ sender: UISegmentedControl) {
     }
     
-
+    
 }
-
