@@ -65,7 +65,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="bottomCaptionLabel" destination="f7g-ms-yCn" id="8QO-2J-jNw"/>
+                        <outlet property="bottomCaptionLabel" destination="kwh-WC-vZT" id="wH9-UE-oOq"/>
                         <outlet property="bottomSegmentedControl" destination="f7g-ms-yCn" id="ldk-RA-mq7"/>
                         <outlet property="topCaptionLabel" destination="DLK-vG-D9T" id="lWL-1U-GG0"/>
                         <outlet property="topSegmentedControl" destination="GoW-2j-seP" id="93P-yw-UWN"/>
