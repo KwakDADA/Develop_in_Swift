@@ -29,5 +29,13 @@ class ViewController: UIViewController {
         answerLabel.text = "?"
     }
 
+    @IBAction func showAnswer(_ sender: Any) {
+        answerLabel.text = elementList[currentElementIndex]
+    }
+    
+    @IBAction func next(_ sender: Any) {
+        
+    }
+    
 }
 
