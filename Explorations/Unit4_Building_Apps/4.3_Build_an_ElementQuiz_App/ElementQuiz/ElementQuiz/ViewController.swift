@@ -7,10 +7,17 @@
 
 import UIKit
 
+enum Mode {
+    case flashCard, quiz
+}
+var mode: Mode = .flashCard
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var modeSelector: UISegmentedControl!
+    @IBOutlet weak var textField: UITextField!
     
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
@@ -18,10 +25,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        updateElement()
+        updateFlashCardUI()
     }
 
-    func updateElement() {
+    func updateFlashCardUI() {
         let elementName = elementList[currentElementIndex]
         let image = UIImage(named: elementName)
         imageView.image = image
@@ -38,7 +45,7 @@ class ViewController: UIViewController {
         if currentElementIndex >= elementList.count {
             currentElementIndex = 0
         }
-        updateElement()
+        updateFlashCardUI()
     }
     
 }
