@@ -15,8 +15,6 @@ enum State {
     case question, answer
 }
 
-var mode: Mode = .flashCard
-
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -26,7 +24,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
-    
+    var mode: Mode = .flashCard {
+        didSet {
+            updateUI()
+        }
+    }
     var state: State = .question
     
     // Quiz-specific state
@@ -40,10 +42,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     // Updates the app's UI in flash card mode.
-    func updateFlashCardUI() {
-        let elementName = elementList[currentElementIndex]
-        let image = UIImage(named: elementName)
-        imageView.image = image
+    func updateFlashCardUI(elementName: String) {
         
         if state == .answer {
             answerLabel.text = elementName
@@ -70,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Updates the app's UI in quiz mode.
-    func updateQuizUI() {
+    func updateQuizUI(elementName: String) {
         switch state {
         case .question:
             answerLabel.text = ""
@@ -85,11 +84,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // Updates the app's UI based on its mode and state.
     func updateUI() {
+        // Shared code: updating the image
+        let elementName = elementList[currentElementIndex]
+        let image = UIImage(named: elementName)
+        imageView.image = image
+        
         switch mode {
         case .flashCard:
-            updateFlashCardUI()
+            updateFlashCardUI(elementName: elementName)
         case .quiz:
-            updateQuizUI()
+            updateQuizUI(elementName: elementName)
         }
     }
     
@@ -113,4 +117,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    @IBAction func switchModes(_ sender: Any) {
+        if modeSelector.selectedSegmentIndex == 0 {
+            mode = .flashCard
+        } else {
+            mode = .quiz
+        }
+    }
+    
 }
