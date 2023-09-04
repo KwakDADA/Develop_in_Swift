@@ -32,9 +32,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        updateFlashCardUI()
+        updateUI()
     }
 
+    // Updates the app's UI in flash card mode.
     func updateFlashCardUI() {
         let elementName = elementList[currentElementIndex]
         let image = UIImage(named: elementName)
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
     @IBAction func showAnswer(_ sender: Any) {
         state = .answer
         
-        updateFlashCardUI()
+        updateUI()
     }
     
     @IBAction func next(_ sender: Any) {
@@ -61,8 +62,21 @@ class ViewController: UIViewController {
         
         state = .question
         
-        updateFlashCardUI()
+        updateUI()
     }
     
+    // Updates the app's UI in quiz mode.
+    func updateQuizUI() {
+        
+    }
+    
+    // Updates the app's UI based on its mode and state.
+    func updateUI() {
+        switch mode {
+        case .flashCard:
+            updateFlashCardUI()
+        case .quiz:
+            updateQuizUI()
+        }
+    }
 }
-
