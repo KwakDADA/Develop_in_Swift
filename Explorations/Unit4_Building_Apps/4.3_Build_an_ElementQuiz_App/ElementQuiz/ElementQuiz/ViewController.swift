@@ -43,7 +43,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     // Updates the app's UI in flash card mode.
     func updateFlashCardUI(elementName: String) {
+        // Text field and keyboard
+        textField.isHidden = true
+        textField.resignFirstResponder()
         
+        // Answer label
         if state == .answer {
             answerLabel.text = elementName
         } else {
@@ -70,6 +74,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // Updates the app's UI in quiz mode.
     func updateQuizUI(elementName: String) {
+        // Text field and keyboard
+        textField.isHidden = false
+        switch state {
+        case .question:
+            textField.text = ""
+            textField.becomeFirstResponder()
+        case .answer:
+            textField.resignFirstResponder()
+        }
+        
+        // Answer label
         switch state {
         case .question:
             answerLabel.text = ""
