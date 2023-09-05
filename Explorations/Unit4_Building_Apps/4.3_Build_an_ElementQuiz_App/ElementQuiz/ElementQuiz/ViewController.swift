@@ -26,6 +26,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentElementIndex = 0
     var mode: Mode = .flashCard {
         didSet {
+            switch mode {
+            case .flashCard:
+                setupFlashCards()
+            case .quiz:
+                setupQuiz()
+            }
+            
             updateUI()
         }
     }
@@ -174,4 +181,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         mode = .flashCard
     }
     
+    // Sets up a new flash card session.
+    func setupFlashCards() {
+        state = .question
+        currentElementIndex = 0
+    }
+    
+    // Set up a new quiz.
+    func setupQuiz() {
+        state = .question
+        currentElementIndex = 0
+        answerIsCorrect = false
+        correctAnswerCount = 0
+    }
 }
