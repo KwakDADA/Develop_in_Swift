@@ -12,7 +12,7 @@ enum Mode {
 }
 
 enum State {
-    case question, answer
+    case question, answer, score
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -53,6 +53,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
             answerLabel.text = "?"
         }
+        
+        // Segmented control
+        modeSelector.selectedSegmentIndex = 0
     }
 
     @IBAction func showAnswer(_ sender: Any) {
@@ -63,12 +66,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func next(_ sender: Any) {
         currentElementIndex += 1
-        if currentElementIndex == elementList.count {
+        if currentElementIndex >= elementList.count {
             currentElementIndex = 0
+            if mode == .quiz {
+                state = .score
+                updateUI()
+                return
+            }
         }
         
         state = .question
-        
         updateUI()
     }
     
@@ -82,6 +89,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             textField.becomeFirstResponder()
         case .answer:
             textField.resignFirstResponder()
+        case .score:
+            textField.isHidden = true
+            textField.resignFirstResponder()
         }
         
         // Answer label
@@ -94,7 +104,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
             } else {
                 answerLabel.text = "❌"
             }
+        case .score:
+            answerLabel.text = ""
         }
+        
+        // Score display
+        if state == .score {
+            displayScoreAlert()
+        }
+        
+        // Segmented Control
+        modeSelector.selectedSegmentIndex = 1
     }
     
     // Updates the app's UI based on its mode and state.
@@ -139,6 +159,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
             mode = .quiz
         }
+    }
+    
+    // Show an iOS alert with the user's quiz score.
+    func displayScoreAlert() {
+        let alert = UIAlertController(title: "Quiz Score", message: "Your score is \(correctAnswerCount) out of \(elementList.count).", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: scoreAlertDismissed(_:))
+        alert.addAction(dismissAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func scoreAlertDismissed(_ action: UIAlertAction) {
+        mode = .flashCard
     }
     
 }
