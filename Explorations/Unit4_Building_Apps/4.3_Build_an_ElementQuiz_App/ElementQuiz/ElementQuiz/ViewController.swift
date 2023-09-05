@@ -21,6 +21,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var modeSelector: UISegmentedControl!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var showAnswerButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
     var currentElementIndex = 0
@@ -63,6 +65,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Segmented control
         modeSelector.selectedSegmentIndex = 0
+        
+        // Buttons
+        showAnswerButton.isHidden = false
+        nextButton.isEnabled = true
+        nextButton.setTitle("Next Element", for: .normal)
     }
 
     @IBAction func showAnswer(_ sender: Any) {
@@ -92,9 +99,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.isHidden = false
         switch state {
         case .question:
+            textField.isEnabled = true
             textField.text = ""
             textField.becomeFirstResponder()
         case .answer:
+            textField.isEnabled = false
             textField.resignFirstResponder()
         case .score:
             textField.isHidden = true
@@ -109,7 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if answerIsCorrect {
                 answerLabel.text = "Correct!"
             } else {
-                answerLabel.text = "❌"
+                answerLabel.text = "❌\nCorrect Answer: " + elementName
             }
         case .score:
             answerLabel.text = ""
@@ -122,6 +131,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Segmented Control
         modeSelector.selectedSegmentIndex = 1
+        
+        // Buttons
+        showAnswerButton.isHidden = true
+        if currentElementIndex == elementList.count - 1 {
+            nextButton.setTitle("Show Score", for: .normal)
+        } else {
+            nextButton.setTitle("Next Question", for: .normal)
+        }
+        switch state {
+        case .question:
+            nextButton.isEnabled = false
+        case .answer:
+            nextButton.isEnabled = true
+        case .score:
+            nextButton.isEnabled = false
+        }
     }
     
     // Updates the app's UI based on its mode and state.
