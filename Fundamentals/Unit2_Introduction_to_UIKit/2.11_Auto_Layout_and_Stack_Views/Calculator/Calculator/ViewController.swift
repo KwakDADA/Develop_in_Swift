@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet var divButton: UIButton!
     @IBOutlet var eqButton: UIButton!
     
+    var startOver = true
+    var equalSignTapped = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,13 +55,11 @@ class ViewController: UIViewController {
         subButton.backgroundColor = .systemOrange
         mulButton.backgroundColor = .systemOrange
         divButton.backgroundColor = .systemOrange
-        eqButton.backgroundColor = .systemOrange
         
         sumButton.titleLabel?.tintColor = .white
         subButton.titleLabel?.tintColor = .white
         mulButton.titleLabel?.tintColor = .white
         divButton.titleLabel?.tintColor = .white
-        eqButton.titleLabel?.tintColor = .white
     }
     
     func buttonSelected(button: UIButton) {
@@ -66,11 +67,21 @@ class ViewController: UIViewController {
         button.titleLabel?.tintColor = .orange
     }
     
+    func allClear() {
+        startOver = true
+        equalSignTapped = false
+        currNum = "0"
+        display.text = "0"
+        prevOperation = ""
+        savedNum = "0"
+        calcButtonInit()
+    }
+    
     @IBAction func numericButtonTapped(_ sender: UIButton) {
         clearButton.titleLabel!.text = "C"
-        guard currNum.count < 9 else { return }
-        
         calcButtonInit()
+        if equalSignTapped { allClear() }
+        guard currNum.count < 9 else { return }
         
         if currNum == "0" {
             currNum = (sender.titleLabel?.text)!
@@ -81,12 +92,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearButtonTapped(_ sender: UIButton) {
-        if clearButton.titleLabel!.text == "C" {
-            print("C")
+        if currNum != "0" {
             clearButton.titleLabel!.text = "AC"
             currNum = "0"
-            
-            print(currOperation)
+            digit(num: currNum)
             switch currOperation {
             case "+": buttonSelected(button: sumButton)
             case "-": buttonSelected(button: subButton)
@@ -94,45 +103,67 @@ class ViewController: UIViewController {
             case "÷": buttonSelected(button: divButton)
             default: break
             }
-            print(currNum, prevOperation, savedNum)
         } else {
-            print("AC")
-            currNum = "0"
-            display.text = "0"
-            prevOperation = ""
-            savedNum = "0"
-            calcButtonInit()
-            print(currNum, prevOperation, savedNum)
+            allClear()
+        }
+    }
+    
+    @IBAction func positiveNegativeButtonTapped(_ sender: UIButton) {
+        currNum = String(Int(currNum)! * (-1))
+        digit(num: currNum)
+    }
+    
+    func operate(num1: String, num2: String, op: String) {
+        switch op {
+        case "+": savedNum = String(Int(num1)! + Int(num2)!)
+        case "-": savedNum = String(Int(num1)! - Int(num2)!)
+        case "×": savedNum = String(Int(num1)! * Int(num2)!)
+        case "÷": savedNum = String(Int(num1)! / Int(num2)!)
+        default: break
         }
     }
     
     @IBAction func calcButtonTapped(_ sender: UIButton) {
         calcButtonInit()
         buttonSelected(button: sender)
+        
         currOperation = sender.titleLabel!.text!
         
-        guard currNum != "" else { 
-            prevOperation = sender.titleLabel!.text!
-            return
+//        guard currNum != "0" else {
+//            prevOperation = currOperation
+//            return
+//        }
+        
+        if startOver {
+            startOver = false
+        } else {
+            operate(num1: savedNum, num2: currNum, op: prevOperation)
         }
         
-        print(currNum, prevOperation, savedNum)
-        
+        prevOperation = currOperation
         if savedNum == "0" {
             savedNum = currNum
+            digit(num: currNum)
         } else {
-            switch prevOperation {
-            case "+": savedNum = String(Int(savedNum)! + Int(currNum)!)
-            case "-": savedNum = String(Int(savedNum)! - Int(currNum)!)
-            case "×": savedNum = String(Int(savedNum)! * Int(currNum)!)
-            case "÷": savedNum = String(Int(savedNum)! / Int(currNum)!)
-            default: break
-            }
+            digit(num: savedNum)
         }
-        prevOperation = currOperation
+        currNum = "0"
+    }
+    
+    @IBAction func eqButtonTapped(_ sender: UIButton) {
+        print(savedNum, currNum, prevOperation, currOperation)
+        calcButtonInit()
+        equalSignTapped = true
+        guard savedNum != "0" || prevOperation != "" else { return }
         
-        print(currNum, savedNum)
+        if currNum == "0" {
+            currNum = savedNum
+            operate(num1: currNum, num2: currNum, op: prevOperation)
+        } else {
+            operate(num1: savedNum, num2: currNum, op: prevOperation)
+        }
+        
+        print(savedNum, currNum)
         digit(num: savedNum)
-        currNum = ""
     }
 }

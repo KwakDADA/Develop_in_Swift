@@ -80,6 +80,9 @@
                                                                         </fragment>
                                                                     </attributedString>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="positiveNegativeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="76u-hc-mu9"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tc9-oB-YPH">
                                                                 <rect key="frame" x="189" y="0.0" width="93.666666666666686" height="96.333333333333329"/>
@@ -420,7 +423,7 @@
                                                                     </attributedString>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="calcButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nyk-gg-uQe"/>
+                                                                    <action selector="eqButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wQa-nC-gWr"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
