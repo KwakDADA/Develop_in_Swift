@@ -46,7 +46,7 @@
                     <connections>
                         <outlet property="segueSwitch" destination="sU1-Qt-eZx" id="rbL-eT-hTz"/>
                         <segue destination="0LJ-Jy-N0I" kind="push" identifier="hello" id="o2D-RQ-E4b"/>
-                        <segue destination="Xy4-TJ-INl" kind="push" id="lom-Zo-ad3"/>
+                        <segue destination="M4A-6X-XUd" kind="show" identifier="bye" id="gjJ-fF-AxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,20 +88,20 @@
             <point key="canvasLocation" x="61.832061068702288" y="3.5211267605633805"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="sGa-0g-g4i">
+        <scene sceneID="4cf-WG-qh4">
             <objects>
-                <viewController id="Xy4-TJ-INl" customClass="ViewController" customModule="TrafficSegues" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lGT-UL-eSE">
+                <viewController id="M4A-6X-XUd" customClass="ViewController" customModule="TrafficSegues" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ey9-Xc-bHi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="i5e-sP-8ga"/>
+                        <viewLayoutGuide key="safeArea" id="cNf-P3-mTb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mJ9-iv-G4N"/>
+                    <navigationItem key="navigationItem" id="Nvs-9g-dMn"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mjw-GI-2sH" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Faj-kF-aMP" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="332"/>
+            <point key="canvasLocation" x="1992" y="382"/>
         </scene>
     </scenes>
     <resources>

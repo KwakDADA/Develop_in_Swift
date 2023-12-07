@@ -18,16 +18,23 @@ class ViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: Any) {
         if segueSwitch.isOn {
-            performSegue(withIdentifier: "hello", sender: nil)
+            performSegue(withIdentifier: "hello", sender: segueSwitch)
         }
     }
     
     @IBAction func byeTapped(_ sender: Any) {
         if segueSwitch.isOn {
-            performSegue(withIdentifier: "bye", sender: nil)
+            performSegue(withIdentifier: "bye", sender: segueSwitch)
         }
     }
     
-    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if let sender = sender as? UISwitch {
+            if sender.isOn {
+                return true
+            }
+        }
+        return false
+    }
 }
 
