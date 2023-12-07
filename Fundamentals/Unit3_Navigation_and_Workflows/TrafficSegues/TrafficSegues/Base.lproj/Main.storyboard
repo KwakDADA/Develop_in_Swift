@@ -46,7 +46,7 @@
                     <connections>
                         <outlet property="segueSwitch" destination="sU1-Qt-eZx" id="rbL-eT-hTz"/>
                         <segue destination="0LJ-Jy-N0I" kind="push" identifier="hello" id="o2D-RQ-E4b"/>
-                        <segue destination="M4A-6X-XUd" kind="show" identifier="bye" id="gjJ-fF-AxH"/>
+                        <segue destination="Ncm-iI-i1t" kind="show" identifier="bye" id="jg6-J8-WWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,20 +88,20 @@
             <point key="canvasLocation" x="61.832061068702288" y="3.5211267605633805"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="4cf-WG-qh4">
+        <scene sceneID="KOX-TM-Eue">
             <objects>
-                <viewController id="M4A-6X-XUd" customClass="ViewController" customModule="TrafficSegues" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ey9-Xc-bHi">
+                <viewController id="Ncm-iI-i1t" customClass="ViewController" customModule="TrafficSegues" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xq3-bg-mzI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cNf-P3-mTb"/>
+                        <viewLayoutGuide key="safeArea" id="kzo-g8-tRh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Nvs-9g-dMn"/>
+                    <navigationItem key="navigationItem" id="tTQ-la-AtA"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Faj-kF-aMP" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQM-6z-dhY" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992" y="382"/>
+            <point key="canvasLocation" x="1992" y="365"/>
         </scene>
     </scenes>
     <resources>

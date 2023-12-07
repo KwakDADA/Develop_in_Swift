@@ -29,10 +29,8 @@ class ViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if let sender = sender as? UISwitch {
-            if sender.isOn {
-                return true
-            }
+        if segueSwitch.isOn {
+            return true
         }
         return false
     }
