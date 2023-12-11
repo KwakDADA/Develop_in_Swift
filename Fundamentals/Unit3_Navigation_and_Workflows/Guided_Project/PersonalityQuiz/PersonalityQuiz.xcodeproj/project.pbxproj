@@ -15,6 +15,7 @@
 		C906F78F2B26A8BA009ACFA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C906F78D2B26A8BA009ACFA1 /* LaunchScreen.storyboard */; };
 		C906F7972B26B991009ACFA1 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C906F7962B26B991009ACFA1 /* QuestionViewController.swift */; };
 		C906F7992B26B99A009ACFA1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C906F7982B26B99A009ACFA1 /* ResultsViewController.swift */; };
+		C9276CA92B26D58700FF4812 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9276CA82B26D58700FF4812 /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C906F7902B26A8BA009ACFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C906F7962B26B991009ACFA1 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		C906F7982B26B99A009ACFA1 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		C9276CA82B26D58700FF4812 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				C906F7842B26A8B7009ACFA1 /* SceneDelegate.swift */,
 				C906F7862B26A8B7009ACFA1 /* IntroductionViewController.swift */,
 				C906F7882B26A8B7009ACFA1 /* Main.storyboard */,
+				C9276CA82B26D58700FF4812 /* Question.swift */,
 				C906F7962B26B991009ACFA1 /* QuestionViewController.swift */,
 				C906F7982B26B99A009ACFA1 /* ResultsViewController.swift */,
 				C906F78B2B26A8BA009ACFA1 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				C906F7872B26A8B7009ACFA1 /* IntroductionViewController.swift in Sources */,
 				C906F7832B26A8B7009ACFA1 /* AppDelegate.swift in Sources */,
 				C906F7992B26B99A009ACFA1 /* ResultsViewController.swift in Sources */,
+				C9276CA92B26D58700FF4812 /* Question.swift in Sources */,
 				C906F7972B26B991009ACFA1 /* QuestionViewController.swift in Sources */,
 				C906F7852B26A8B7009ACFA1 /* SceneDelegate.swift in Sources */,
 			);
