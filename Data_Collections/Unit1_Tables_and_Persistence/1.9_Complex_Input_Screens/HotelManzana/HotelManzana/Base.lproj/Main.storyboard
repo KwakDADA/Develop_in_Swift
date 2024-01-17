@@ -99,6 +99,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="TextFieldEditing:" destination="yvy-rk-ohR" eventType="editingChanged" id="xhd-oX-jrZ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -120,6 +123,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="TextFieldEditing:" destination="yvy-rk-ohR" eventType="editingDidEnd" id="c1S-Zr-rGz"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -141,6 +147,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="TextFieldEditing:" destination="yvy-rk-ohR" eventType="editingDidEnd" id="Bat-JM-9dN"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -156,7 +165,7 @@
                             <tableViewSection id="seC-K0-5uO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7uw-HG-p6H" detailTextLabel="jFt-bK-x31" style="IBUITableViewCellStyleValue1" id="TbT-cX-06l">
-                                        <rect key="frame" x="0.0" y="156.99999618530273" width="393" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="156.99999618530276" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TbT-cX-06l" id="foa-NP-oBO">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
@@ -252,7 +261,7 @@
                             <tableViewSection id="uCW-HG-inV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YlH-GG-s0D">
-                                        <rect key="frame" x="0.0" y="712.99998855590832" width="393" height="42.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="712.9999885559082" width="393" height="42.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YlH-GG-s0D" id="urf-U3-7QZ">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="42.333332061767578"/>
@@ -291,7 +300,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hWc-A9-EUB">
-                                        <rect key="frame" x="0.0" y="755.33332061767589" width="393" height="42.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="755.33332061767578" width="393" height="42.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hWc-A9-EUB" id="2mW-Wk-wA9">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="42.333332061767578"/>
@@ -334,7 +343,7 @@
                             <tableViewSection id="d0s-0l-4oh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="L43-mD-Nu0">
-                                        <rect key="frame" x="0.0" y="833.66665267944347" width="393" height="45"/>
+                                        <rect key="frame" x="0.0" y="833.66665267944336" width="393" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L43-mD-Nu0" id="tve-8b-KmY">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="45"/>
@@ -377,7 +386,7 @@
                             <tableViewSection id="1Dc-UB-y97">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Qnq-NG-rqv" detailTextLabel="ic8-8r-FSZ" style="IBUITableViewCellStyleValue1" id="giX-4i-2tg">
-                                        <rect key="frame" x="0.0" y="914.66665267944347" width="393" height="44"/>
+                                        <rect key="frame" x="0.0" y="914.66665267944336" width="393" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="giX-4i-2tg" id="Hi3-Wn-8vQ">
                                             <rect key="frame" x="0.0" y="0.0" width="374.66666666666669" height="44"/>
@@ -428,6 +437,7 @@
                         <outlet property="checkInDatePicker" destination="tmE-EN-mh2" id="4LG-ua-wBN"/>
                         <outlet property="checkOutDateLabel" destination="47a-pv-cnf" id="Sok-KZ-IHe"/>
                         <outlet property="checkOutDatePicker" destination="gJJ-Uq-jpl" id="RQP-s0-1J8"/>
+                        <outlet property="doneBarButton" destination="KFc-dL-bNa" id="tWO-p7-mfn"/>
                         <outlet property="emailTextField" destination="3YY-YP-JqG" id="P6o-Sn-64k"/>
                         <outlet property="firstNameTextField" destination="Hcm-52-K3g" id="uec-xi-3ZR"/>
                         <outlet property="lastNameTextField" destination="0KC-Q5-JFw" id="IlM-lR-yae"/>

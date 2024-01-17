@@ -9,6 +9,8 @@ import UIKit
 
 class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeTableViewControllerDelegate {
     
+    @IBOutlet var doneBarButton: UIBarButtonItem!
+    
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
@@ -69,6 +71,10 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
             numberOfChildrenStepper.value = Double(registration.numberOfChildren)
             wifiSwitch.isOn = registration.wifi
             roomType = registration.roomType
+            
+            title = "Edit Guest Registration"
+        } else {
+            title = "Add Guest Registration"
         }
         
         let midnightToday = Calendar.current.startOfDay(for: Date())
@@ -78,6 +84,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
+        updateDoneBarButtonState()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,11 +103,13 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         registration = Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfAdults: numberOfAdults, numberOfChildren: numberOfChildren, wifi: hasWifi, roomType: roomType)
     }
     
-    
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func TextFieldEditing(_ sender: Any) {
+        updateDoneBarButtonState()
+    }
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
@@ -108,6 +117,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
+        updateDoneBarButtonState()
     }
     
     @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
@@ -121,12 +131,21 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         return selectRoomTypeController
     }
     
+    func updateDoneBarButtonState() {
+        let firstNameText = firstNameTextField.text ?? ""
+        let lastNameText = lastNameTextField.text ?? ""
+        let emailAddressText = emailTextField.text ?? ""
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let roomType = self.roomType
+        
+        doneBarButton.isEnabled = !firstNameText.isEmpty && !lastNameText.isEmpty && !emailAddressText.isEmpty && numberOfAdults != 0 && roomType != nil
+    }
     
     func updateDateViews() {
+        checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
+        
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
         checkOutDateLabel.text = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
-        
-        checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
     }
     
     func updateNumberOfGuests() {
@@ -146,6 +165,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     func selectRoomTypeTableViewController(_ controller: SelectRoomTypeTableViewController, didSelect roomType: RoomType) {
         self.roomType = roomType
         updateRoomType()
+        updateDoneBarButtonState()
     }
     
     // MARK: Table View Delegate
