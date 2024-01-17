@@ -16,12 +16,30 @@ class RegistrationTableViewController: UITableViewController {
     }
     
     @IBAction func unwindFromAddRegistration(unwindSegue: UIStoryboardSegue) {
-        guard let addRegistrationTableViewController = unwindSegue.source as? AddRegistrationTableViewController,
-        let registration = addRegistrationTableViewController.registration else { return }
+        guard unwindSegue.identifier == "doneUnwind",
+              let sourceViewController = unwindSegue.source as? AddRegistrationTableViewController,
+              let registration = sourceViewController.registration else { return }
         
-        registrations.append(registration)
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            registrations[selectedIndexPath.row] = registration
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+        } else {
+            let newIndexPath = IndexPath(row: registrations.count, section: 0)
+            registrations.append(registration)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
         tableView.reloadData()
     }
+    
+        @IBSegueAction func addEditRegistration(_ coder: NSCoder, sender: Any?) -> AddRegistrationTableViewController? {
+            if let cell = sender as? UITableViewCell,
+               let indexPath = tableView.indexPath(for: cell) {
+                let registrationToEdit = registrations[indexPath.row]
+                return AddRegistrationTableViewController(coder: coder, registration: registrationToEdit)
+            } else {
+                return AddRegistrationTableViewController(coder: coder, registration: nil)
+            }
+        }
 
     // MARK: - Table view data source
 

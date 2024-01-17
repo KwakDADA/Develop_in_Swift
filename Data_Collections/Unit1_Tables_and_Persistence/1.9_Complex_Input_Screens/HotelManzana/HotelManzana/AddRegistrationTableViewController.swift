@@ -45,8 +45,44 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     @IBOutlet var roomTypeLabel: UILabel!
     var roomType: RoomType?
     
-    var registration: Registration? {
-        guard let roomType = roomType else { return nil }
+    var registration: Registration?
+    
+    init?(coder: NSCoder, registration: Registration?) {
+        self.registration = registration
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let registration = registration {
+            firstNameTextField.text = registration.firstName
+            lastNameTextField.text = registration.lastName
+            emailTextField.text = registration.emailAddress
+            checkInDatePicker.date = registration.checkInDate
+            checkOutDatePicker.date = registration.checkOutDate
+            numberOfAdultsStepper.value = Double(registration.numberOfAdults)
+            numberOfChildrenStepper.value = Double(registration.numberOfChildren)
+            wifiSwitch.isOn = registration.wifi
+            roomType = registration.roomType
+        }
+        
+        let midnightToday = Calendar.current.startOfDay(for: Date())
+        checkInDatePicker.minimumDate = midnightToday
+        checkInDatePicker.date = midnightToday
+        
+        updateDateViews()
+        updateNumberOfGuests()
+        updateRoomType()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "doneUnwind" else { return }
+        guard let roomType = roomType else { return }
         
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
@@ -57,19 +93,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         let numberOfChildren = Int(numberOfChildrenStepper.value)
         let hasWifi = wifiSwitch.isOn
         
-        return Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfAdults: numberOfAdults, numberOfChildren: numberOfChildren, wifi: hasWifi, roomType: roomType)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let midnightToday = Calendar.current.startOfDay(for: Date())
-        checkInDatePicker.minimumDate = midnightToday
-        checkInDatePicker.date = midnightToday
-        
-        updateDateViews()
-        updateNumberOfGuests()
-        updateRoomType()
+        registration = Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfAdults: numberOfAdults, numberOfChildren: numberOfChildren, wifi: hasWifi, roomType: roomType)
     }
     
     
