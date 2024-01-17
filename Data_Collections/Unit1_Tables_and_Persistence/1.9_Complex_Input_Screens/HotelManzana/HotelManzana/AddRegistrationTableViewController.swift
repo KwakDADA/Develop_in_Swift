@@ -47,6 +47,14 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     @IBOutlet var roomTypeLabel: UILabel!
     var roomType: RoomType?
     
+    @IBOutlet var numberOfNightsLabel: UILabel!
+    @IBOutlet var checkInCheckOutDateLabel: UILabel!
+    @IBOutlet var roomTypeCostLabel: UILabel!
+    @IBOutlet var roomTypeDescriptionLabel: UILabel!
+    @IBOutlet var wifiCostLabel: UILabel!
+    @IBOutlet var wifiUseLabel: UILabel!
+    @IBOutlet var totalCostLabel: UILabel!
+    
     var registration: Registration?
     
     init?(coder: NSCoder, registration: Registration?) {
@@ -85,6 +93,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         updateNumberOfGuests()
         updateRoomType()
         updateDoneBarButtonState()
+        updateTotalCostLabel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,6 +122,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
+        updateTotalCostLabel()
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -121,6 +131,8 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     }
     
     @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
+        updatewifiCostLabel()
+        updateTotalCostLabel()
     }
     
     @IBSegueAction func selectRoomType(_ coder: NSCoder) -> SelectRoomTypeTableViewController? {
@@ -146,6 +158,8 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
         checkOutDateLabel.text = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
+        
+        updateNumberOfNightsLabel()
     }
     
     func updateNumberOfGuests() {
@@ -159,6 +173,43 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         } else {
             roomTypeLabel.text = "Not Set"
         }
+        
+        updateRoomTypeCostLabel()
+        updateTotalCostLabel()
+    }
+    
+    func updateNumberOfNightsLabel() {
+        numberOfNightsLabel.text = String(Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date).day ?? 0)
+        checkInCheckOutDateLabel.text = (checkInDatePicker.date..<checkOutDatePicker.date).formatted(date: .numeric, time: .omitted)
+    }
+    
+    func updateRoomTypeCostLabel() {
+        if let roomType = roomType {
+            let nights = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date).day ?? 1
+            roomTypeCostLabel.text = "$ \(roomType.price * nights)"
+            roomTypeDescriptionLabel.text = roomType.name + " @ $\(roomType.price)/night"
+        } else {
+            roomTypeCostLabel.text = "Not Set"
+            roomTypeDescriptionLabel.text = "none"
+        }
+    }
+    
+    func updatewifiCostLabel() {
+        if wifiSwitch.isOn {
+            let nights = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date).day ?? 1
+            wifiCostLabel.text = "$ \(10 * nights)"
+            wifiUseLabel.text = "Yes"
+        } else {
+            wifiCostLabel.text = "$ 0"
+            wifiUseLabel.text = "No"
+        }
+    }
+    
+    func updateTotalCostLabel() {
+        let roomCost = roomType?.price ?? 0
+        let wifiCost = wifiSwitch.isOn ? 10 : 0
+        let nights = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date).day ?? 1
+        totalCostLabel.text = "$ \((roomCost + wifiCost) * nights)"
     }
     
     // MARK: - selectRoomTypeTableViewController delegate method
