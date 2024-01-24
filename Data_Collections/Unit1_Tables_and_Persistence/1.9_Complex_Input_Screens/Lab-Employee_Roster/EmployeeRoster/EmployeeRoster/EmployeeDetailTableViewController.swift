@@ -30,12 +30,14 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
         
         updateView()
         updateSaveButtonState()
+        updateDateView()
     }
     
     func updateView() {
         if let employee = employee {
             navigationItem.title = employee.name
             nameTextField.text = employee.name
+            self.employeeType = employee.employeeType
             
             dobLabel.text = employee.dateOfBirth.formatted(date: .abbreviated, time: .omitted)
             dobLabel.textColor = .label
@@ -43,6 +45,17 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
             employeeTypeLabel.textColor = .label
         } else {
             navigationItem.title = "New Employee"
+        }
+    }
+    
+    private func updateDateView() {
+        let middleAge = (16 + 65) / 2
+        
+        let calendar = Calendar.current
+        let birthDateComponents = DateComponents(year: calendar.component(.year, from: Date()) - middleAge)
+        
+        if let defaultBirthDate = calendar.date(from: birthDateComponents) {
+            dobDatePicker.date = defaultBirthDate
         }
     }
     

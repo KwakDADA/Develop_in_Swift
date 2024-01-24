@@ -37,6 +37,10 @@ class EmployeeListTableViewController: UITableViewController, EmployeeDetailTabl
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // MARK: - Navigation
     
     @IBSegueAction func showEmployeeDetail(_ coder: NSCoder, sender: Any?) -> EmployeeDetailTableViewController? {
