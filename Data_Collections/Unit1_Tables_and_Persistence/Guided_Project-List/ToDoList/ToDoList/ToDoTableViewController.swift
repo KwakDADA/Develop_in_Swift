@@ -65,7 +65,6 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
         
         return detailController
     }
-    
 
     // MARK: - Table view data source
 

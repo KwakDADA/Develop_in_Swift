@@ -209,6 +209,29 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="djH-hQ-g3T">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="I4o-5b-k3z">
+                                        <rect key="frame" x="0.0" y="687.66665840148926" width="393" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I4o-5b-k3z" id="ytd-GG-6cR">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57r-6W-M3y">
+                                                    <rect key="frame" x="156" y="4" width="68" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Share"/>
+                                                    <connections>
+                                                        <action selector="shareButtonTapped:" destination="8fg-1l-eRg" eventType="touchUpInside" id="Qh6-Gd-oYN"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="8fg-1l-eRg" id="5N5-ew-7Ee"/>
@@ -233,13 +256,14 @@
                         <outlet property="isCompleteButton" destination="bNw-ae-f8B" id="lZ3-eg-2DY"/>
                         <outlet property="notesTextView" destination="zPu-Vs-VlT" id="rJv-ug-kCp"/>
                         <outlet property="saveButton" destination="NQw-sI-W3A" id="I0C-35-jcD"/>
+                        <outlet property="shareButton" destination="57r-6W-M3y" id="kIY-Vf-z0h"/>
                         <outlet property="titleTextField" destination="M6V-Vv-ZaI" id="sCT-Lu-eLH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Daz-8B-O99" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="a0l-J9-k1s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="-20"/>
+            <point key="canvasLocation" x="1293.8931297709923" y="-20.422535211267608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E4R-TO-wt0">

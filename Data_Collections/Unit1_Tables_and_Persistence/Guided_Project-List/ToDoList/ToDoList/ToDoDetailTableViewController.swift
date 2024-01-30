@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class ToDoDetailTableViewController: UITableViewController {
+class ToDoDetailTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     
     var toDo: ToDo?
     
@@ -18,6 +19,7 @@ class ToDoDetailTableViewController: UITableViewController {
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var dueDateDatePicker: UIDatePicker!
     @IBOutlet var notesTextView: UITextView!
+    @IBOutlet var shareButton: UIButton!
     
     var isDatePickerHidden = true
     let dateLabelIndexPath = IndexPath(row: 0, section: 1)
@@ -41,6 +43,7 @@ class ToDoDetailTableViewController: UITableViewController {
         dueDateDatePicker.date = currentDate
         updateDueDateLabel(date: currentDate)
         updateSaveButton()
+        updateShareButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,6 +68,7 @@ class ToDoDetailTableViewController: UITableViewController {
 
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButton()
+        updateShareButton()
     }
     
     @IBAction func returnPressed(_ sender: UITextField) {
@@ -79,6 +83,21 @@ class ToDoDetailTableViewController: UITableViewController {
         updateDueDateLabel(date: sender.date)
     }
     
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setSubject(titleTextField.text!)
+        mailComposer.setMessageBody(notesTextView.text, isHTML: false)
+        
+        present(mailComposer, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func updateSaveButton() {
         let shouldEnableSaveButton = titleTextField.text?.isEmpty == false
         saveButton.isEnabled = shouldEnableSaveButton
@@ -86,6 +105,11 @@ class ToDoDetailTableViewController: UITableViewController {
     
     func updateDueDateLabel(date: Date) {
         dueDateLabel.text = date.formatted(.dateTime.month(.defaultDigits).day().year(.twoDigits).hour().minute())
+    }
+    
+    func updateShareButton() {
+        let shouldEnableSaveButton = titleTextField.text?.isEmpty == false
+        shareButton.isEnabled = shouldEnableSaveButton
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
