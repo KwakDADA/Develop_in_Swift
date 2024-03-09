@@ -58,15 +58,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mf0-Q6-cwh">
-                                <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuItem" textLabel="oO1-oU-61n" detailTextLabel="ep9-ce-9BW" style="IBUITableViewCellStyleValue1" id="mf0-Q6-cwh">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mf0-Q6-cwh" id="HQ1-nD-Ru1">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oO1-oU-61n">
+                                            <rect key="frame" x="20" y="15" width="25" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ep9-ce-9BW">
+                                            <rect key="frame" x="340.33333333333331" y="15" width="32.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="JPN-gY-LxM" kind="show" id="v8T-eo-EqA"/>
+                                    <segue destination="JPN-gY-LxM" kind="show" destinationCreationSelector="showMenuItem:sender:" id="v8T-eo-EqA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,7 +91,7 @@
                             <outlet property="delegate" destination="KqV-As-DrB" id="iST-3T-qcm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SpF-bT-4ee"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="SpF-bT-4ee"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNH-JY-cpl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,7 +107,7 @@
                         <viewLayoutGuide key="safeArea" id="tpf-D4-txI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1MX-e6-ew1"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="1MX-e6-ew1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zcf-dc-wxX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
