@@ -13,6 +13,7 @@ class OrderTableViewController: UITableViewController {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
+        
     }
 
     // MARK: - Table view data source
