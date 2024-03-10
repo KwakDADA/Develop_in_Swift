@@ -250,7 +250,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Dismiss"/>
                                         <connections>
-                                            <segue destination="WzV-QI-TBv" kind="unwind" unwindAction="unwindToOrderListWithSegue:" id="Ovj-1P-i8O"/>
+                                            <segue destination="WzV-QI-TBv" kind="unwind" identifier="dismissConfirmation" unwindAction="unwindToOrderListWithSegue:" id="Ovj-1P-i8O"/>
                                         </connections>
                                     </button>
                                 </subviews>
