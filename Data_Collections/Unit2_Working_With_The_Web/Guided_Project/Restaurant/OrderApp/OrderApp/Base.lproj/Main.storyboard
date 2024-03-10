@@ -214,7 +214,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="R0j-kG-1Ti">
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="wjs-YU-d7Z"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="wjs-YU-d7Z">
+                            <connections>
+                                <action selector="submitTapped:" destination="BH6-Bq-7DX" id="6dZ-96-6v6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="E0K-Un-Ewe" kind="presentation" identifier="confirmOrder" destinationCreationSelector="confirmOrder:" id="zmC-to-k91"/>
