@@ -20,6 +20,7 @@
 		C932884C2B99FC6B001C11C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C932884B2B99FC6B001C11C7 /* Base */; };
 		C932884E2B99FC6D001C11C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C932884D2B99FC6D001C11C7 /* Assets.xcassets */; };
 		C93288512B99FC6D001C11C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C93288502B99FC6D001C11C7 /* Base */; };
+		C9EB5FDD2B9DA6E60010DBF6 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5FDC2B9DA6E60010DBF6 /* OrderConfirmationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C932884D2B99FC6D001C11C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C93288502B99FC6D001C11C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C93288522B99FC6D001C11C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9EB5FDC2B9DA6E60010DBF6 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				C907B14F2B9AC66E0069F808 /* MenuController.swift */,
 				C907B14D2B9A07300069F808 /* Order.swift */,
 				C907B1472B9A02390069F808 /* MenuItemDetailViewController.swift */,
+				C9EB5FDC2B9DA6E60010DBF6 /* OrderConfirmationViewController.swift */,
 				C907B1412B9A00550069F808 /* CategoryTableViewController.swift */,
 				C907B1432B9A00620069F808 /* MenuTableViewController.swift */,
 				C907B1452B9A006A0069F808 /* OrderTableViewController.swift */,
@@ -168,6 +171,7 @@
 				C907B1462B9A006A0069F808 /* OrderTableViewController.swift in Sources */,
 				C93288452B99FC6B001C11C7 /* AppDelegate.swift in Sources */,
 				C93288472B99FC6B001C11C7 /* SceneDelegate.swift in Sources */,
+				C9EB5FDD2B9DA6E60010DBF6 /* OrderConfirmationViewController.swift in Sources */,
 				C907B1422B9A00550069F808 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

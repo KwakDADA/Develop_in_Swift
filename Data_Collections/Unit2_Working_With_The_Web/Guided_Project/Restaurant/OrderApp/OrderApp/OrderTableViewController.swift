@@ -9,12 +9,22 @@ import UIKit
 
 class OrderTableViewController: UITableViewController {
     
+    var minutesToPrepare = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = editButtonItem
 
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
+    }
+    
+    @IBSegueAction func confirmOrder(_ coder: NSCoder) -> OrderConfirmationViewController? {
+        return OrderConfirmationViewController(coder: coder, minutesToPrepare: minutesToPrepare)
+    }
+    
+    @IBAction func unwindToOrderList(segue: UIStoryboardSegue) {
+        
     }
 
     // MARK: - Table view data source
