@@ -7,7 +7,9 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -38,3 +40,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // if user selecte 'snooze' action, it alert again after 9 minutes
+        if response.actionIdentifier == Alarm.snoozeActionID {
+            let snoozeDate = Date().addingTimeInterval(9 * 60)
+            let alarm = Alarm(date: snoozeDate)
+            alarm.schedule { granted in
+                if !granted {
+                    print("Can't schedule snooze because notification permissions were revoked.")
+                }
+            }
+        }
+        completionHandler()
+    }
+    
+    // when the app is in foreground, if notification to be presented still needed
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.list, .banner, .sound])
+        Alarm.scheduled = nil
+    }
+}
