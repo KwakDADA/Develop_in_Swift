@@ -47,6 +47,7 @@ struct Alarm {
                         print(error.localizedDescription)
                         completion(false)
                     } else {
+                        Alarm.scheduled = self
                         completion(true)
                     }
                 }
@@ -56,6 +57,7 @@ struct Alarm {
     
     func unschedule() {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationID])
+        Alarm.scheduled = nil
     }
     
     /// this method should get the notification settings from the shared instance of UNUserNotificationCenter, then check the authorization status.
@@ -77,6 +79,36 @@ struct Alarm {
             @unknown default:
                 completion(false)
             }
+        }
+    }
+}
+
+extension Alarm: Codable {
+    private static let alarmURL: URL = {
+        guard let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Can't get URL for documents directory.")
+        }
+        return baseURL.appendingPathComponent("Scheduled Alarm")
+    }()
+    
+    static var scheduled: Alarm? {
+        get {
+            guard let data = try? Data(contentsOf: alarmURL) else {
+                return nil
+            }
+            
+            return try? JSONDecoder().decode(Alarm.self, from: data)
+        }
+        set {
+            if let alarm = newValue {
+                guard let data = try? JSONEncoder().encode(alarm) else {
+                    return
+                }
+            } else {
+                try? FileManager.default.removeItem(at: alarmURL)
+            }
+            
+            NotificationCenter.default.post(name: .alarmUpdated, object: nil)
         }
     }
 }
