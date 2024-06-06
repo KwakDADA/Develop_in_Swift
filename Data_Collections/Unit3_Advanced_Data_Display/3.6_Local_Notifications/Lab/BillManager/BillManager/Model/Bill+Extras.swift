@@ -31,8 +31,42 @@ extension Bill {
         return dateString
     }
     
-    func schedule(_ date: Date, completion: @escaping (Bool) -> ()) {
+    mutating func schedule(_ date: Date, completion: @escaping (Bill) -> ()) {
+        var updatedBill = self
         
+        updatedBill.unschedule()
+        
+        authorizeIfNeeded { granted in
+            guard granted else {
+                DispatchQueue.main.async {
+                    completion(updatedBill)
+                }
+                return
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Bill Reminder"
+        content.body = "$\(updatedBill.amount!) due to \(updatedBill.payee!) on \(updatedBill.formattedDueDate)"
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = Bill.notificationCategoryID
+        
+        let triggerDateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+        
+        notificationID = UUID().uuidString
+        remindDate = date
+        
+        let request = UNNotificationRequest(identifier: updatedBill.notificationID!, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                completion(updatedBill)
+            }
+        }
     }
     
     mutating func unschedule() {
