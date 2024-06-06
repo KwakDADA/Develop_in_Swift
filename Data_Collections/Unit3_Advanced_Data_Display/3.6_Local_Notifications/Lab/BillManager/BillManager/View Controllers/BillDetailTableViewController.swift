@@ -210,11 +210,25 @@ class BillDetailTableViewController: UITableViewController, UITextFieldDelegate 
         
         if remindSwitch.isOn {
             bill.remindDate = remindDatePicker.date
+            bill.schedule(remindDatePicker.date) { updatedBill in
+                if updatedBill.notificationID == nil {
+                    self.presentNeedAuthorizationAlert()
+                }ㅊㅇ
+                Database.shared.updateAndSave(updatedBill)
+            }
         } else {
             bill.remindDate = nil
+            bill.unschedule()
+            Database.shared.updateAndSave(bill)
         }
         
         Database.shared.updateAndSave(bill)
+    }
+    
+    func presentNeedAuthorizationAlert() {
+        let title = "Authorization Needed"
+        let message = "Reminder don't work without notifications, and it looks like you haven't granted us permisssion to send you those. Please go to the iOS Settings app and grant us notification permissions."
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     }
     
     @objc func cancelButtonTapped() {
