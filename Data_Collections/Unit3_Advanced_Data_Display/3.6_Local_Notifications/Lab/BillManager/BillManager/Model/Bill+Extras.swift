@@ -8,8 +8,6 @@ import NotificationCenter
 
 extension Bill {
     static let notificationCategoryID = "BillNotification"
-    static let remindAgainActionID = "remindAgain"
-    static let markAsPaidActionID = "markAsPaid"
     
     var hasReminder: Bool {
         return (remindDate != nil)
@@ -43,38 +41,42 @@ extension Bill {
                 }
                 return
             }
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Bill Reminder"
-        content.body = "$\(updatedBill.amount!) due to \(updatedBill.payee!) on \(updatedBill.formattedDueDate)"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = Bill.notificationCategoryID
-        
-        let triggerDateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
-        
-        notificationID = UUID().uuidString
-        remindDate = date
-        
-        let request = UNNotificationRequest(identifier: updatedBill.notificationID!, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            DispatchQueue.main.async {
-                completion(updatedBill)
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Bill Reminder"
+            content.body = "$\(updatedBill.amount!) due to \(updatedBill.payee!) on \(updatedBill.formattedDueDate)"
+            content.sound = UNNotificationSound.default
+            content.categoryIdentifier = Bill.notificationCategoryID
+            
+            let triggerDateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+            
+            let notificationID = UUID().uuidString
+            
+            let request = UNNotificationRequest(identifier: notificationID, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request) { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        updatedBill.notificationID = notificationID
+                        updatedBill.remindDate = date
+                    }
+                    DispatchQueue.main.async {
+                        completion(updatedBill)
+                    }
+                }
             }
         }
     }
     
     mutating func unschedule() {
-        if let notificationID = notificationID {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationID])
+        if let id = notificationID {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+            notificationID = nil
+            remindDate = nil
         }
-        notificationID = nil
-        remindDate = nil
     }
     
     private func authorizeIfNeeded(completion: @escaping (Bool) -> ()) {
@@ -85,9 +87,9 @@ extension Bill {
                 notificationCenter.requestAuthorization(options: [.alert, .sound]) { granted, _ in
                     completion(granted)
                 }
-            case .denied, .provisional, .ephemeral:
+            case .denied, .ephemeral:
                 completion(false)
-            case .authorized:
+            case .authorized, .provisional:
                 completion(true)
             @unknown default:
                 completion(false)

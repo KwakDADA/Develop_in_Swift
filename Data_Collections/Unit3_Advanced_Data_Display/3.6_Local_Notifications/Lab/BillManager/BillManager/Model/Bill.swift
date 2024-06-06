@@ -11,9 +11,8 @@ struct Bill: Codable {
     var remindDate: Date?
     var notificationID: String?
     
-    init(id: UUID = UUID(), notificationID: String? = nil) {
+    init(id: UUID = UUID()) {
         self.id = id
-        self.notificationID = notificationID ?? UUID().uuidString
     }
 }
 
