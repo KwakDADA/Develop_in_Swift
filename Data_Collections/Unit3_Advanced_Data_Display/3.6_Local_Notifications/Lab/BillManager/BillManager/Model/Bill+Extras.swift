@@ -35,8 +35,12 @@ extension Bill {
         
     }
     
-    func unschedule() {
-        
+    mutating func unschedule() {
+        if let notificationID = notificationID {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationID])
+        }
+        notificationID = nil
+        remindDate = nil
     }
     
     private func authorizeIfNeeded(completion: @escaping (Bool) -> ()) {

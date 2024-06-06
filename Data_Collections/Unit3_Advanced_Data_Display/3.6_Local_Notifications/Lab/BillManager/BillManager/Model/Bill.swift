@@ -9,9 +9,11 @@ struct Bill: Codable {
     var paidDate: Date?
     var payee: String?
     var remindDate: Date?
+    var notificationID: String?
     
-    init(id: UUID = UUID()) {
+    init(id: UUID = UUID(), notificationID: String? = nil) {
         self.id = id
+        self.notificationID = notificationID ?? UUID().uuidString
     }
 }
 
